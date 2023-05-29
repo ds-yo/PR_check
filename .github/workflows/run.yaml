@@ -23,7 +23,7 @@ jobs:
         run: git fetch origin ${base_branch}:${base_branch}
       # - name: Run actions using diff_files #変更のあるファイルを抽出する。
       #   run: |
-      #     diff_files=git diff --name-only -G ${target_str} HEAD origin/${base_branch} -- ${diff_path} | tr "\n" " "
+      #     diff_files=`git diff --name-only -G ${target_str} HEAD origin/${base_branch} -- ${diff_path} | tr "\n" " "`
       - name: Display file name if it contains hoge #差分内に${target_str} を含む場合に、プルリクにコメントし却下する。
         run: |
           diff_files=`git diff --name-only -G ${target_str} HEAD origin/${base_branch} -- ${diff_path} | tr "\n" " "`
