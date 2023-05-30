@@ -15,17 +15,16 @@ jobs:
     name:  Find unauthorized strings # job 名
     runs-on: ubuntu-latest # 仮想環境指定（Windows Server, Ubuntu, Mac OSをサポートする）
     steps:
-      # - name: Switch to pull request branch
-      #   uses: actions/checkout@v3
-      #   with:
-      #     ref: ${{ github.event.pull_request.head.sha }}
+      - name: Switch to pull request branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       # - name: Fetch base branch
       #   run: git fetch origin ${base_branch}:${base_branch}
       # - name: Run actions using diff_files #変更のあるファイルを抽出する。
       #   run: |
       #     diff_files=`git diff --name-only -G ${target_str} HEAD origin/${base_branch} -- ${diff_path} | tr "\n" " "`
       - name: Display file name if it contains unauthorized strings #差分内に${target_str} を含む場合に、プルリクにコメントし異常終了する。
-        uses: actions/checkout@v3
         run: |
           diff_files=`git diff --name-only -G ${target_str} HEAD origin/${base_branch} -- ${diff_path} | tr "\n" " "`
           if grep ${target_str} ${diff_files}; then
