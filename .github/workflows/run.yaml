@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches: [ main ]
-    paths: 'code/**' #チェックするディレクトリと拡張子の指定
+    # paths: 'code/**' #チェックするディレクトリと拡張子の指定
 env:
   base_branch: "main"
   diff_path: "code/**"
@@ -27,7 +27,7 @@ jobs:
       - name: Display file name if it contains hoge #差分内に${target_str} を含む場合に、プルリクにコメントし却下する。
         run: |
           diff_files=`git diff --name-only -G ${target_str} HEAD origin/${base_branch} -- ${diff_path} | tr "\n" " "`
-          if  grep ${target_str} ${diff_files}; then
+          if grep ${target_str} ${diff_files}; then
             gh pr comment -b "$(grep ${target_str} ${diff_files})" ${{github.event.pull_request.html_url }}
             exit 1
             echo "contains ${target_str}"
