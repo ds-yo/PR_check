@@ -1,2 +1,2 @@
 print("hello")
-print("hello www")
+print("hello hoge")
