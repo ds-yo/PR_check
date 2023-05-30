@@ -1,6 +1,5 @@
 name: pr_checker             # workflow 名
 on:
-  workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
     branches: [ main ]
@@ -20,8 +19,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      # - name: Fetch base branch
-      #   run: git fetch origin ${base_branch}:${base_branch}
+      - name: Fetch base branch
+        run: git fetch origin ${base_branch}:${base_branch}
       # - name: Run actions using diff_files #変更のあるファイルを抽出する。
       #   run: |
       #     diff_files=`git diff --name-only -G ${target_str} HEAD origin/${base_branch} -- ${diff_path} | tr "\n" " "`
