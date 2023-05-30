@@ -1,5 +1,6 @@
 name: pr_checker             # workflow 名
 on:
+  workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
     branches: [ main ]
