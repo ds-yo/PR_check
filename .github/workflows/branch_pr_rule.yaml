@@ -18,6 +18,6 @@ jobs:
       - name: Check branch 
         run: |
           echo ${{ github.head_ref }}
-          if [ "${{ github.head_ref }}" = "dev" ] then;
+          if [ "${{ github.head_ref }}" = "dev" ]; then
             exit 1
           fi
