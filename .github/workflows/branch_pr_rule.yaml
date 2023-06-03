@@ -32,7 +32,7 @@ on:
 
 jobs:
   build:
-  name: check branch
+    name: check branch
     runs-on: ubuntu-latest
     steps: 
       - name: Switch to pull request branch
