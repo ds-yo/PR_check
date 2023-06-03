@@ -11,11 +11,11 @@ jobs:
     name:  Check branch # job 名
     runs-on: ubuntu-latest # 仮想環境指定（Windows Server, Ubuntu, Mac OSをサポートする）
     steps:
-      - name: Switch to pull request branch
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - name: Check branch #差分内に${target_str} を含む場合に、プルリクにコメントし異常終了する。
+      # - name: Switch to pull request branch
+      #   uses: actions/checkout@v3
+      #   with:
+      #     ref: ${{ github.event.pull_request.head.sha }}
+      - name: Check branch 
         run: |
           echo ${{ github.head_ref }}
           gh pr comment -b "${{ github.head_ref }}"
