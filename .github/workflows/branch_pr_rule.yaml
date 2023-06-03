@@ -1,0 +1,22 @@
+name: pr_checker             # workflow 名
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ main ]
+
+jobs:
+  build:
+  name: check branch
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Switch to pull request branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: check branch
+        run: |
+        echo ${{ github.head_ref }}
+        gh pr comment -b "${{ github.head_ref }}"
+        if [ "${{ github.head_ref }}" = "dev" ] then;
+          exit 1
+        fi
