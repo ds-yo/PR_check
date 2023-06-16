@@ -30,6 +30,6 @@ jobs:
           if grep ${target_str} ${diff_files}; then
             gh pr comment -b "${diff_files}で${target_str}を検知しました。
             $(grep ${target_str} ${diff_files})" ${{github.event.pull_request.html_url }}
-            exit 1
             echo "contains ${target_str}"
+            exit 1
           fi
